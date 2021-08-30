@@ -1,0 +1,44 @@
+.login-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+}
+.login-form .twitter__logo.MuiSvgIcon-root {
+  font-size: 40px;
+}
+.login-form form {
+  margin-top: 30px;
+}
+.login-form form button {
+  width: 100%;
+}
+.login-form form > * + * {
+  margin-top: 24px;
+}
+
+/* Material Input overrides*/
+.tw_io {
+  width: 100%;
+}
+.tw_io .MuiInputBase-root::before,
+.tw_io .MuiInputBase-root::after {
+  display: none;
+}
+.tw_io .MuiFilledInput-root {
+  background: transparent;
+}
+.tw_io .MuiInputBase-root input {
+  border: 1px solid var(--border-color);
+  color: var(--text-light);
+  border-radius: 5px;
+  transition: border-color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+.tw_io label {
+  color: var(--text-light);
+}
+.tw_io .MuiInputBase-root.Mui-focused input {
+  border-color: var(--primary-color);
+}
+.tw_io label.Mui-focused {
+  color: var(--primary-color);
+}

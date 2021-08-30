@@ -1,0 +1,110 @@
+.feed {
+  /* flex: 0.4; */
+  /* border-right: 1px solid var(--border-color); */
+  /* min-width: fit-content; */
+  /* max-width: 750px; */
+  flex: 1;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.feed-header {
+  position: sticky;
+  top: 0;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 15px;
+  background: var(--bg);
+}
+
+/* POST TWEET BOX */
+.tweet-box {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  align-items: flex-start;
+  display: none;
+}
+.tweet-box .right {
+  width: 100%;
+  padding-left: 10px;
+}
+.tweet-box textarea {
+  width: 100%;
+  display: block;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  resize: none;
+  font-size: 18px;
+  color: var(--text);
+}
+.tweet-box textarea:focus {
+  outline: none;
+}
+.post-tweet-btn {
+  padding: 10px 25px;
+  display: block;
+  margin-left: auto;
+  margin-top: 20px;
+}
+
+/* POST STYLING */
+.tweet-post {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: flex-start;
+}
+.tweet-post .post-content-holder {
+  width: 100%;
+  padding-left: 10px;
+}
+.tweet-post .post-content {
+  margin-top: 2px;
+}
+.drop-down-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  padding: 0;
+  flex: none;
+  cursor: pointer;
+}
+.drop-down-btn .MuiSvgIcon-root {
+  vertical-align: middle;
+  font-size: 16px;
+}
+.tweet-post .poster-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tweet-post .poster-info > div {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+.tweet-post .poster-info > div p {
+  font-weight: 700;
+  margin-right: 2px;
+}
+.tweet-post .poster-info > div span {
+  color: var(--text-light);
+}
+.tweet-post .poster-info .verified.MuiSvgIcon-root {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+@media (min-width: 768px) {
+  .tweet-box {
+    display: flex;
+  }
+}
+@media (min-width: 1024px) {
+  .feed {
+    flex: 0.5;
+    border-right: 1px solid var(--border-color);
+    /* min-width: fit-content; */
+  }
+}

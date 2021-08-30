@@ -1,0 +1,91 @@
+.widgets {
+  flex: 0.25;
+  display: none;
+  padding: 15px;
+}
+.search-io {
+  position: relative;
+  width: 100%;
+  color: var(--text);
+  width: 100%;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+}
+.search-io input {
+  background: var(--link-hover);
+  color: var(--text);
+  border-radius: 50px;
+  border: 0;
+  width: 100%;
+  padding: 12px 12px 12px 45px;
+}
+.search-io input:focus {
+  outline: none;
+}
+.search-io .MuiSvgIcon-root {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.widget-card {
+  background: var(--card-bg);
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 20px;
+  border: 1px solid var(--card-bg);
+}
+.widget-card > * + * {
+  margin-top: 15px;
+}
+
+.wh-card p {
+  font-weight: 500;
+  padding: 2px 0;
+}
+.wh-card span {
+  color: var(--text-light);
+  font-size: 13px;
+}
+.wh-card span small {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.w-follow-card {
+  display: flex;
+  align-items: flex-start;
+}
+.w-follow-card .profile-data {
+  flex-grow: 1;
+  padding: 0 10px;
+}
+.w-follow-card .profile-data span {
+  color: var(--text-light);
+}
+.w-follow-card .profile-data p {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+.w-follow-card .profile-data p .MuiSvgIcon-root {
+  font-size: 16px;
+  margin-left: 2px;
+}
+.w-follow-card .follow-btn {
+  background: var(--text);
+  color: var(--bg);
+  padding: 5px 15px;
+  border: none;
+  border-radius: 30px;
+  flex: none;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .widgets {
+    display: block;
+  }
+}
