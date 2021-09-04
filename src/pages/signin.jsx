@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/signin.css";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import TextField from "@material-ui/core/TextField";
 import { useForm, Controller, useFormState } from "react-hook-form";
+import { auth } from "../db_core/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { Alert } from "../components/Alert";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/actions/userActions";
+import { useHistory } from "react-router";
 
 export default function Signin() {
   const { handleSubmit, control } = useForm({ mode: "onChange" });
   const { isValid } = useFormState({ control });
+  const dispatch = useDispatch();
+  const [snackbar, toggleSnackbar] = useState(false);
+  const history = useHistory();
 
   const onSubmit = (data) => {
     console.log(data);
+    signInWithEmailAndPassword(auth, data.username, data.password)
+      .then((res) => {
+        const userData = {
+          uid: res.user.uid,
+          name: "Subham Bhattacharya",
+          phone: 7001459783,
+          email: "subhambhattacharya700@gmail.com",
+          username: "subx",
+          profile_picture: "",
+        };
+        localStorage.setItem("tuser", JSON.stringify(userData));
+        dispatch(setUser(userData));
+        history.replace("/");
+      })
+      .catch((err) => toggleSnackbar(true));
   };
 
   return (
@@ -55,6 +79,14 @@ export default function Signin() {
           Log in
         </button>
       </form>
+
+      {snackbar && (
+        <Alert
+          message="The email and password you entered did not match our records. Please double-check and try again."
+          autoCloseTimer={3000}
+          closeAlert={toggleSnackbar}
+        />
+      )}
     </div>
   );
 }

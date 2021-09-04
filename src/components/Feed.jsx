@@ -3,7 +3,7 @@ import "../styles/feed.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import Avatar from "@material-ui/core/Avatar";
-import db from "../firebase";
+import { db } from "../db_core/firebase";
 import { collection, getDocs } from "@firebase/firestore/lite";
 
 export default function Feed() {

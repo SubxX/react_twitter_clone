@@ -10,8 +10,34 @@ import PersonIcon from "@material-ui/icons/Person";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import ForumIcon from "@material-ui/icons/Forum";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { auth } from "../db_core/firebase";
+import { useHistory } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/actions/userActions";
 
 function Sidebar() {
+  const dispatcher = useDispatch();
+  const history = useHistory();
+
+  function logout() {
+    signOut(auth).then(() => {
+      history.push("/login");
+      localStorage.removeItem("tuser");
+      dispatcher(
+        setUser({
+          uid: "",
+          name: "",
+          phone: "",
+          email: "",
+          username: "",
+          profile_picture: "",
+        })
+      );
+    });
+  }
+
   return (
     <div className="sidebar">
       <TwitterIcon className="twitter__logo" />
@@ -27,6 +53,12 @@ function Sidebar() {
       <SidebarOption text="Lists" Icon={SubjectIcon} active={false} />
       <SidebarOption text="Profile" Icon={PersonIcon} active={false} />
       <SidebarOption text="More" Icon={MoreHorizIcon} active={false} />
+      <SidebarOption
+        text="Logout"
+        Icon={ExitToAppIcon}
+        active={false}
+        clickHandler={logout}
+      />
       <button className="primary-btn sidebar__tweet">
         <AddCircleIcon />
         <p>Tweet</p>
@@ -37,9 +69,12 @@ function Sidebar() {
 
 export default Sidebar;
 
-function SidebarOption({ text, Icon, active }) {
+function SidebarOption({ text, Icon, active, clickHandler }) {
   return (
-    <div className={`sidebarOption ${active && "sidebarOption--active"}`}>
+    <div
+      className={`sidebarOption ${active && "sidebarOption--active"}`}
+      onClick={() => clickHandler()}
+    >
       <Icon />
       <p>{text}</p>
     </div>
