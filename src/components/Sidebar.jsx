@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/sidebar.css";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import HomeIcon from "@material-ui/icons/Home";
@@ -11,6 +11,9 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import ForumIcon from "@material-ui/icons/Forum";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Dialog from "@material-ui/core/Dialog";
+
+// Firebase stuff
 import { auth } from "../db_core/firebase";
 import { useHistory } from "react-router-dom";
 import { signOut } from "firebase/auth";
@@ -20,6 +23,11 @@ import { setUser } from "../store/actions/userActions";
 function Sidebar() {
   const dispatcher = useDispatch();
   const history = useHistory();
+  const [dialog, setDialog] = useState(false);
+
+  function closeDialog() {
+    setDialog(false);
+  }
 
   function logout() {
     signOut(auth).then(() => {
@@ -57,12 +65,33 @@ function Sidebar() {
         text="Logout"
         Icon={ExitToAppIcon}
         active={false}
-        clickHandler={logout}
+        clickHandler={() => {
+          setDialog(true);
+        }}
       />
       <button className="primary-btn sidebar__tweet">
         <AddCircleIcon />
         <p>Tweet</p>
       </button>
+
+      <Dialog
+        open={dialog}
+        onClose={closeDialog}
+        aria-labelledby="logout confirmation dialog"
+      >
+        <div className="custom-dialog">
+          <p>Are you sure ?</p>
+          <span>Are your sure you want to logout for twitter</span>
+          <div className="dialog-actions">
+            <button className="cancel-btn" onClick={closeDialog}>
+              Cancel
+            </button>
+            <button className="logout-btn" onClick={logout}>
+              Logout
+            </button>
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 }

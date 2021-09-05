@@ -64,3 +64,65 @@ main {
   border-radius: 5px;
   font-weight: 600;
 }
+.MuiPaper-root {
+  background-color: var(--card-bg) !important;
+  color: var(--text) !important;
+}
+
+.custom-dialog {
+  padding: 20px;
+}
+.custom-dialog p {
+  font-size: 24px;
+}
+.custom-dialog span {
+  display: block;
+  padding: 8px 0 15px 0;
+}
+.dialog-actions {
+  text-align: right;
+}
+.dialog-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+}
+button.cancel-btn {
+  margin-right: 10px;
+  background: var(--text);
+  color: var(--bg);
+}
+button.logout-btn {
+  background: var(--primary-color);
+  color: #fff;
+  transition: background-color 0.4s ease;
+}
+button.logout-btn:hover {
+  background: var(--primary-hover);
+}
+
+.custom-spinner {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border-radius: 50px 50px 50px 50px;
+  border: 2px solid var(--primary-color);
+  border-left-color: transparent;
+  animation: spinner 1s linear infinite;
+  vertical-align: middle;
+}
+.custom-spinner.white {
+  border-color: #fff;
+  border-left-color: transparent;
+}
+.custom-spinner.left-gap {
+  margin-left: 8px;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(-360deg);
+  }
+}

@@ -15,12 +15,14 @@ export default function Signin() {
   const { isValid } = useFormState({ control });
   const dispatch = useDispatch();
   const [snackbar, toggleSnackbar] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const history = useHistory();
 
   const onSubmit = (data) => {
-    console.log(data);
+    setSubmitted(true);
     signInWithEmailAndPassword(auth, data.username, data.password)
       .then((res) => {
+        setSubmitted(false);
         const userData = {
           uid: res.user.uid,
           name: "Subham Bhattacharya",
@@ -33,7 +35,10 @@ export default function Signin() {
         dispatch(setUser(userData));
         history.replace("/");
       })
-      .catch((err) => toggleSnackbar(true));
+      .catch((err) => {
+        setSubmitted(false);
+        toggleSnackbar(true);
+      });
   };
 
   return (
@@ -75,8 +80,9 @@ export default function Signin() {
             )}
           />
         </div>
-        <button className="primary-btn" disabled={!isValid}>
+        <button className="primary-btn" disabled={!isValid || submitted}>
           Log in
+          {submitted && <span className="custom-spinner white left-gap"></span>}
         </button>
       </form>
 
