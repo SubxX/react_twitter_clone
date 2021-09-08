@@ -3,8 +3,6 @@ import "../styles/signin.css";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import TextField from "@material-ui/core/TextField";
 import { useForm, Controller, useFormState } from "react-hook-form";
-import { auth } from "../db_core/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { Alert } from "../components/Alert";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/actions/userActions";
@@ -20,25 +18,21 @@ export default function Signin() {
 
   const onSubmit = (data) => {
     setSubmitted(true);
-    signInWithEmailAndPassword(auth, data.username, data.password)
-      .then((res) => {
-        setSubmitted(false);
-        const userData = {
-          uid: res.user.uid,
-          name: "Subham Bhattacharya",
-          phone: 7001459783,
-          email: "subhambhattacharya700@gmail.com",
-          username: "subx",
-          profile_picture: "",
-        };
-        localStorage.setItem("tuser", JSON.stringify(userData));
-        dispatch(setUser(userData));
-        history.replace("/");
-      })
-      .catch((err) => {
-        setSubmitted(false);
-        toggleSnackbar(true);
-      });
+    setTimeout(() => {
+      const userData = {
+        uid: "axa-taxa-ioul",
+        name: "Subham Bhattacharya",
+        phone: 7001459783,
+        email: "subhambhattacharya700@gmail.com",
+        username: "subx",
+        profile_picture: "",
+      };
+      localStorage.setItem("tuser", JSON.stringify(userData));
+      dispatch(setUser(userData));
+      history.replace("/");
+    }, 2000);
+    // setSubmitted(false);
+    // toggleSnackbar(true);
   };
 
   return (

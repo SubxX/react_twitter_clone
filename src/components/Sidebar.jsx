@@ -14,9 +14,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Dialog from "@material-ui/core/Dialog";
 
 // Firebase stuff
-import { auth } from "../db_core/firebase";
 import { useHistory } from "react-router-dom";
-import { signOut } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/actions/userActions";
 
@@ -30,31 +28,29 @@ function Sidebar() {
   }
 
   function logout() {
-    signOut(auth).then(() => {
-      history.push("/login");
-      localStorage.removeItem("tuser");
-      dispatcher(
-        setUser({
-          uid: "",
-          name: "",
-          phone: "",
-          email: "",
-          username: "",
-          profile_picture: "",
-        })
-      );
-    });
+    history.push("/login");
+    localStorage.removeItem("tuser");
+    dispatcher(
+      setUser({
+        uid: "",
+        name: "",
+        phone: "",
+        email: "",
+        username: "",
+        profile_picture: "",
+      })
+    );
   }
 
   return (
     <div className="sidebar">
       <TwitterIcon className="twitter__logo" />
-      <SidebarOption text="Home" Icon={HomeIcon} active={false} />
+      <SidebarOption text="Home" Icon={HomeIcon} active={true} />
       <SidebarOption text="Explore" Icon={SearchIcon} active={false} />
       <SidebarOption
         text="Notifications"
         Icon={NotificationsIcon}
-        active={true}
+        active={false}
       />
       <SidebarOption text="Messages" Icon={ForumIcon} active={false} />
       <SidebarOption text="Bookmarsks" Icon={BookmarkIcon} active={false} />

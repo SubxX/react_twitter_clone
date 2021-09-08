@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/feed.css";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import Avatar from "@material-ui/core/Avatar";
-import { db } from "../db_core/firebase";
-import { collection, getDocs } from "@firebase/firestore/lite";
 
 export default function Feed() {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    const getPosts = async () => {
-      const postsCollection = collection(db, "posts");
-      const postsSnapshot = await getDocs(postsCollection);
-      const postsData = postsSnapshot.docs.map((doc) => ({
-        uid: doc.id,
-        ...doc.data(),
-      }));
-      console.log(postsData);
-      setPosts(postsData);
-    };
-    getPosts();
-  }, []);
+  const [posts, setPosts] = useState([
+    {
+      uid: "A123-KLO",
+      key: "axa-lo",
+      name: "keneki Ken",
+      username: "@ken2",
+      isVerified: false,
+      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla debitis neque in officiis, veritatis, magni ducimus dicta ullam illo, maxime suscipit saepe vero molestiae nam qui molestias officia modi inventore?",
+      avatar: "",
+    },
+  ]);
 
   return (
     <div className="feed">
